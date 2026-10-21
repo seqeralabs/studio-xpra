@@ -6,8 +6,8 @@ check the existing tags using the pattern: `xpra/<version>/connect/<version>`.
 
 ## Components
 
-- **[Xpra](https://xpra.org/) v6.3.6-r0-1** — persistent remote display server and client
-- **Python 3.12** — system Python
+- **[Xpra](https://xpra.org/) v6.5.4-r0-1** — persistent remote display server and client
+- **Python 3.14** — system Python
 - **Micromamba** — conda-based environment manager
 - **Terminator** — default terminal emulator
 - **connect-client** — Seqera connect client for studio integration
@@ -36,5 +36,5 @@ To create a customized version:
 The pre-built image is available at:
 
 ```
-public.cr.seqera.io/platform/data-studio-xpra:6.3.6-r0-1-0.14.1
+public.cr.seqera.io/platform/data-studio-xpra:6.5.4-r0-1-0.14.2
 ```

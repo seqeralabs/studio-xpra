@@ -18,6 +18,9 @@ if lspci | grep -E "VGA|3D|NVIDIA|AMD"; then
     fi
 fi
 
+# --server-idle-timeout must be > 0: since xpra 6.4, enabling --idle-timeout
+# turns the default 0 ("never") into a 0-second timer that exits the server
+# on startup. 30 days, kept below GLib's ~49-day timer limit.
 exec xpra start \
 --bind-tcp=0.0.0.0:$CONNECT_TOOL_PORT \
 --mdns=no \
@@ -35,6 +38,7 @@ exec xpra start \
 --daemon=no \
 --start="terminator" \
 --idle-timeout=21600 \
+--server-idle-timeout=2592000 \
 --mousewheel=on \
 --opengl=yes \
 --tray=yes \

@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG CONNECT_CLIENT_VERSION=0.14.1
+ARG CONNECT_CLIENT_VERSION=0.14.2
 FROM public.cr.seqera.io/platform/connect-client:${CONNECT_CLIENT_VERSION} AS connect
 
-FROM mambaorg/micromamba:2.8.1-ubuntu24.04 AS micromamba
+FROM mambaorg/micromamba:2.8.1-ubuntu26.04 AS micromamba
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 ARG CONNECT_CLIENT_VERSION
 LABEL io.seqera.connect.version="${CONNECT_CLIENT_VERSION}"
@@ -38,13 +38,14 @@ RUN apt-get update --yes && apt-get install --yes --no-install-recommends \
     pciutils \
     cups-filters \
     cups-common \
-    cups-pdf \
+    printer-driver-cups-pdf \
     ca-certificates \
     git \
     wget \
     sudo \
     libatomic1 \
-    python3.12 \
+    libx264-165 \
+    python3.14 \
     python3-cups \
     python3-xdg \
     python3-pyinotify \
@@ -76,9 +77,9 @@ SHELL ["/usr/local/bin/_dockerfile_shell.sh"]
 
 #### Install Xpra ####
 RUN wget -O "/usr/share/keyrings/xpra.asc" https://xpra.org/xpra.asc && \
-    wget -O "/etc/apt/sources.list.d/xpra.sources"  https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/noble/xpra.sources
+    wget -O "/etc/apt/sources.list.d/xpra.sources"  https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/resolute/xpra.sources
 
-ARG xpra_version=6.3.6-r0-1
+ARG xpra_version=6.5.4-r0-1
 RUN apt-get update --yes && apt-get install --yes --no-install-recommends \
     xpra-html5 \
     xpra=${xpra_version} \
